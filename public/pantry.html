@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta
+         name="google-signin-client_id"
+         content="149399536640-69j2ql0nashgqndqmna83hvqh8ture3h.apps.googleusercontent.com"
+         />
+      <script src="https://apis.google.com/js/platform.js" asnc defer></script>
+      <meta charset="utf-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1, shrink-to-fit=no"
+         />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="stylesheet" href="/build/tailwind.css" />
+      <title>Pantry</title>
+      <style>
+         #menu-toggle:checked + #menu {
+         display: block;}
+         html {
+         scroll-behavior: smooth;
+         }
+      </style>
+   </head>
+   <script type="text/javascript">
+      let foodNames = [
+        "Broccoli",
+        "Doritos",
+        "Milk",
+        "Black Beans",
+        "Steak",
+        "Tortilla",
+        "Ice Cream"
+      ];
+      
+      let calorieCount = [50, 150, 103, 114, 679, 62, 137];
+      
+      let foodImages = [
+        "/foodpics/broccolipic.png",
+        "/foodpics/doritospic.png",
+        "/foodpics/milk.png",
+        "/foodpics/beans.png",
+        "/foodpics/steak.png",
+        "/foodpics/tortilla.png",
+        "/foodpics/icecream.png"
+      ];
+      let expirationDays = [5, 90, 7, 365, 4, 7, 80];
+      let types = [
+        "produce and snacks",
+        "produce and snacks",
+        "dairy and dessert",
+        "produce and snacks",
+        "meat and carbs",
+        "meat and carbs",
+        "dairy and dessert"
+      ];
+      function fn1() {
+        let str =  document.getElementById("newFood").value;
+        let section = document.getElementById("foodieOneTootie")
+        foodNames.forEach((v,i) => {
+          if (v == str) {
+            section.innerHTML = section.innerHTML + `<div style="display: flex;flex-direction: column;" onclick="alert('${str} has ${calorieCount[i]} calories. It expires in ${expirationDays[i]} days.')">
+                  <img src="${foodImages[i]}" class="m-0 rounded-full w-20 h-20 border-2 border-transparent hover:border-purple-400" id="image"  />
+                  <p id="a" style="margin:auto">${str}</p>
+               </div>
+`
+          
+          }
+        })
+      }
+        
+   </script>
+   <body class="antialiased bg-orange-200">
+      <header class="lg:px-16 bg-white flex flex-wrap items-center lg:py-0 py-2">
+         <a href="index.html"
+            ><img
+            style="height: 200px; width: 200px; margin: 0; padding: 0;"
+            src="logo.png"
+            /></a>
+         <div class="flex-1 flex justify-between items-center"></div>
+         <label for="menu-toggle" class="cursor-pointer lg:hidden block">
+            <svg
+               class="fill-current text-gray-900"
+               xmlns="https://www.w3.org/2000/svg"
+               width="20"
+               height="20"
+               viewBox="0 0 20 20"
+               >
+               <title>menu</title>
+               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+         </label>
+         <input type="checkbox" class="hidden" id="menu-toggle" />
+         <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+            <nav>
+               <ul
+                  class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0"
+                  >
+                  <li>
+                     <a
+                        href="index.html"
+                        class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-purple-400"
+                        >Home</a
+                        >
+                  </li>
+                  <li>
+                     <a
+                        href="index.html#about"
+                        class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-purple-400"
+                        >How it works</a
+                        >
+                  </li>
+                  <li>
+                     <a
+                        class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-purple-400"
+                        href="pantry.html"
+                        >Pantry</a
+                        >
+                  </li>
+                  <li class="g-signin2" data-onsuccess="onSignIn"></li>
+               </ul>
+            </nav>
+            <a
+               href="#"
+               class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 cursor-pointer"
+               >
+               <br />
+               <div id="content"></div>
+               <script>
+                  function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log(
+                      "User is " + JSON.stringify(googleUser.getBasicProfile())
+                    );
+                  
+                    var element = document.querySelector("#content");
+                    document.getElementById("name").innerHTML =
+                      "Hi, " + profile.getGivenName();
+                  
+                    var image = document.createElement("img");
+                    image.setAttribute("src", profile.getImageUrl());
+                    element.append(image);
+                    image.className =
+                      "rounded-full w-10 h-10 border-2 border-transparent hover:border-purple-400 m-0";
+                  }
+               </script>
+            </a>
+         </div>
+      </header>
+      </script>
+      <div class="p-4 text-center border-4 border-purple-400 text-2xl">
+         <label for="newFood">Enter a food:</label>
+         <input name="foods" list="food" id="newFood" />
+         <datalist id="food">
+            <script>
+               var str = ""; // variable to store the options
+               var food = new Array(
+                 "Broccoli",
+                 "Doritos",
+                 "Milk",
+                 "Black Beans",
+                 "Steak",
+                 "Tortilla",
+                 "Ice Cream"
+               );
+               for (var i = 0; i < food.length; ++i) {
+                 str += '<option value="' + food[i] + '" />'; // Storing options in variable
+               }
+               var my_list = document.getElementById("food");
+               my_list.innerHTML = str;
+            </script>
+         </datalist>
+         <button
+            onclick="fn1()"
+            id="btn1"
+            class="text-white ml-4 p-1 bg-purple-400 rounded-md"
+            >
+         Enter
+         </button>
+      </div>
+      <div class="px-4 space-y-40 pt-20">
+         <div style="display:flex; flex-direction: column;">
+            <div style="display:flex;margin-top:auto;" id="foodieOneTootie">
+            </div>
+            <div class="max-w-10xl bg-white rounded-lg p-1"></div>
+         </div>
+         <div style="display:flex; flex-direction: column;">
+            <div style="display:flex;margin-top:auto; ">
+            </div>
+            <div class="max-w-10xl bg-white rounded-lg p-1"></div>
+         </div>
+      </div>
+      <pre>
+    </pre>
+   </body>
+</html>

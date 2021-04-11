@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="google-signin-client_id" content="149399536640-69j2ql0nashgqndqmna83hvqh8ture3h.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" asnc defer></script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" type="image/png" sizes="16x16" href="jar.png" />
+    <link rel="stylesheet" href="/build/tailwind.css" />
+    <title>PantryPal</title>
+    <style>
+      #menu-toggle:checked + #menu {
+        display: block;
+      }
+html{
+  scroll-behavior: smooth;
+}
+    </style>
+  </head>
+  <body class="antialiased bg-orange-200">
+    <header class="lg:px-16 bg-white flex flex-wrap items-center lg:py-0 py-2">
+      <a href="index.html" style="overflow:hidden;height:100px;"><img style="height:200px; width:200px; margin-top:-40px; padding:0;" src="logo.png"/></a>
+      <div class="flex-1 flex justify-between items-center"></div>
+        <label for="menu-toggle" class="cursor-pointer lg:hidden block">
+          <svg
+            class="fill-current text-gray-900"
+            xmlns="https://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+          >
+            <title>menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+          </svg>
+        </label>
+        <input type="checkbox" class="hidden" id="menu-toggle" />
+        <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+          <nav>
+            <ul
+              class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0 space-x-5"
+            >
+              <li><a href="index.html#about" class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-purple-400">How it works</a></li>
+              <li><a href="pantry.html" class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-purple-400">Pantry</a></li>
+              <li class="g-signin2" data-onsuccess="onSignIn"></li>
+              
+            </ul>
+          </nav>
+          <div id="content"></div>
+          <script>
+             function onSignIn(googleUser) {
+               var profile = googleUser.getBasicProfile();
+               console.log(
+                 "User is " + JSON.stringify(googleUser.getBasicProfile())
+               );
+             
+               var element = document.querySelector("#content");
+               document.getElementById("name").innerHTML =
+                 "Hi, " + profile.getGivenName();
+             
+               var image = document.createElement("img");
+               image.setAttribute("src", profile.getImageUrl());
+               element.append(image);
+               image.className =
+                 "rounded-full w-10 h-10 border-2 border-transparent hover:border-purple-400 m-0";
+             }
+          </script>
+
+        </div>
+      </div>
+    </header>
+    <div class="px-4 space-y-20 my-16">
+      <div class="max-w-3xl bg-white rounded-lg mx-auto p-16">
+        <h1 class="text-2xl font-sans mb-2">Welcome to PantryPal</h1>
+        <p class="text-2xl font-sans text-orange-400 mb-2" id="name"></p>
+        <h2 class="font-sans text-sm text-purple-500 mb-4 uppercase tracking-wide">Stay organized. Stay Healthy.</h2>
+        <img src="pantry.png" class="rounded-lg my-13 p-13">
+      </div>
+      <div class="max-w-3xl bg-white rounded-lg mx-auto p-16">
+        <h1 id="about" class="text-2xl font-sans text-orange-400 mb-2">How it works</h1>
+        <p id="about" class="text-1xl font-sans mb-2">PantryPal is a website that allows you to organize your pantry. You can keep track of how many calories each item has, and when the item expires. Sign in to begin adding foods to your shelf!
+        </p>
+
+      </div>
+    </div>
+  </body>
+</html>
